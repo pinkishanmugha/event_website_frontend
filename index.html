@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VyomX | Space Club Event</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+
+<body>
+
+    <nav class="navbar">
+    <div class="logo">VyomX '26</div>
+
+    <!-- Hamburger icon -->
+    <div class="menu-toggle" id="menu-toggle">
+        ☰
+    </div>
+
+    <ul class="nav-links" id="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#highlights">Event Highlights</a></li>
+        <li><a href="#countdown">Countdown</a></li>
+        <li><a href="#gallery">Space Gallery</a></li>
+        <li><a href="#contact">Contact</a></li>
+
+    </ul>
+
+    </nav>
+
+<!-- HERO SECTION -->
+<header class="hero" id="home">
+
+<p class="hero-present">
+SPACE CLUB OF LBS INSTITUTE OF TECHNOLOGY FOR WOMEN PRESENTS
+</p>
+
+<h1 class="hero-title">VYOMX</h1>
+<p class="hero-tagline">
+Exploring the Future of Space Technology
+</p>
+
+<p>October 11, 2026</p>
+
+<a href="#" class="btn hero-btn">Register</a>
+
+</header>
+
+
+<!-- ABOUT SECTION -->
+<section class="about" id="about">
+
+  <div class="about-container">
+    <h2 class="section-title">About VyomX</h2>
+
+    <p>
+      VyomX is the flagship event of the Space Club of LBS Institute of
+      Technology for Women, bringing together students, researchers and
+      space enthusiasts to explore innovations in space science,
+      satellite technology and interplanetary missions. Join us for an
+      inspiring journey beyond Earth through expert talks, workshops
+      and exhibitions.
+    </p>
+  </div>
+
+</section>
+
+
+<!-- EVENT HIGHLIGHTS -->
+<section class="event-highlights" id="highlights">
+
+<h2 class="section-title">EVENT HIGHLIGHTS</h2>
+
+<div class="highlights-grid">
+
+<div class="highlight-card">
+<i class="fas fa-user-astronaut highlight-icon"></i>
+<h3 class="highlight-title">Expert Talks</h3>
+<p>Insights from space scientists and industry experts.</p>
+</div>
+
+<div class="highlight-card">
+<i class="fas fa-rocket highlight-icon"></i>
+<h3 class="highlight-title">Workshops</h3>
+<p>Hands-on sessions on rocket science and satellite systems.</p>
+</div>
+
+<div class="highlight-card">
+<i class="fas fa-satellite highlight-icon"></i>
+<h3 class="highlight-title">Satellite Tech</h3>
+<p>Explore modern satellite technology and CubeSats.</p>
+</div>
+
+<div class="highlight-card">
+<i class="fas fa-globe highlight-icon"></i>
+<h3 class="highlight-title">Space Exhibition</h3>
+<p>Models, posters and demos of space missions.</p>
+</div>
+
+</div>
+</section>
+
+<!--Count down -->
+<section class="countdown" id="countdown">
+
+<h2 class="section-title">Event Countdown</h2>
+
+<div class="countdown-timer">
+
+<div class="countdown-item">
+<div class="countdown-number" id="days">00</div>
+<div class="countdown-label">Days</div>
+</div>
+
+<div class="countdown-item">
+<div class="countdown-number" id="hours">00</div>
+<div class="countdown-label">Hours</div>
+</div>
+
+<div class="countdown-item">
+<div class="countdown-number" id="minutes">00</div>
+<div class="countdown-label">Minutes</div>
+</div>
+
+<div class="countdown-item">
+<div class="countdown-number" id="seconds">00</div>
+<div class="countdown-label">Seconds</div>
+</div>
+
+</div>
+
+</section>
+
+<!-- IMAGE GALLERY -->
+<section class="gallery" id="gallery">
+
+<h2 class="section-title">Space Gallery</h2>
+
+<div class="gallery-container">
+
+<div class="image-box">
+<img src="images/planet.jpg">
+<p>Planet Exploration</p>
+</div>
+
+<div class="image-box">
+<img src="images/satellite.jpg">
+<p>Orbiting Satellite</p>
+</div>
+
+<div class="image-box">
+<img src="images/rocket.jpg">
+<p>Rocket Launch</p>
+</div>
+
+<div class="image-box">
+<img src="images/nebula.jpg">
+<p>Cosmic Nebula</p>
+</div>
+
+<div class="image-box">
+<img src="images/galaxy.jpg">
+<p>Distant Galaxy</p>
+</div>
+
+</div>
+</section>
+
+
+<!-- FOOTER -->
+<section class="contact">
+<footer id="contact">
+<p>Space Club | VyomX 2026</p>
+<p>Exploring the Universe Together</p>
+<br>
+<p>Email - spaceclublbsitw@gmail.com</p>
+<br>
+<div class="footer-socials">
+
+    <a>
+    <i class="fab fa-instagram"></i>
+    </a>
+    <a>
+    <i class="fab fa-facebook-f"></i>
+    </a>
+    <a>
+    <i class="fab fa-linkedin-in"></i>
+    </a>
+
+</div>
+
+<p class="copyright">
+© 2026 Space Club | LBSITW
+</p>
+</footer>
+</section>
+
+<script>
+const toggle = document.getElementById("menu-toggle");
+const nav = document.getElementById("nav-links");
+
+toggle.addEventListener("click", () => {
+  nav.classList.toggle("active");
+});
+
+const eventDate = new Date("Oct 12, 2026 09:00:00").getTime();
+
+const timer = setInterval(function() {
+
+const now = new Date().getTime();
+const distance = eventDate - now;
+
+const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+document.getElementById("days").innerHTML = days;
+document.getElementById("hours").innerHTML = hours;
+document.getElementById("minutes").innerHTML = minutes;
+document.getElementById("seconds").innerHTML = seconds;
+
+if (distance < 0) {
+clearInterval(timer);
+}
+
+}, 1000);
+
+const sections = document.querySelectorAll("header,section,footer");
+const navLinks = document.querySelectorAll(".nav-links a");
+
+window.addEventListener("scroll", () => {
+
+let current = "";
+
+sections.forEach(section => {
+const sectionTop = section.offsetTop - 200;
+const sectionHeight = section.clientHeight;
+
+if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
+current = section.getAttribute("id");
+}
+});
+
+navLinks.forEach(link => {
+link.classList.remove("active");
+
+if(link.getAttribute("href") === "#" + current){
+link.classList.add("active");
+}
+});
+
+});
+</script>
+
+</body>
+</html>
