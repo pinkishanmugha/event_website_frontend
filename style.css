@@ -686,3 +686,79 @@ font-size:2.2rem;
 font-size:2.2rem;
 }
 }
+
+/* MOBILE ANIMATED BG OPTIMIZATION */
+@media (max-width: 768px) {
+  /* ABOUT SECTION - Simplified wave animation */
+  .about::before {
+    animation-duration: 12s; /* Slower = better perf */
+    background-size: 300% 300%;
+    opacity: 0.08; /* Less opaque = less GPU load */
+  }
+
+  /* EVENT HIGHLIGHTS - Reduced grid animation */
+  .event-highlights::before {
+    background-size: 100px 100px;
+    animation-duration: 30s; /* Much slower */
+    opacity: 0.05;
+    will-change: transform; /* Optimize for animation */
+  }
+
+  /* COUNTDOWN - Simplified particles */
+  .countdown::before {
+    background-size: 150px 150px;
+    animation-duration: 35s;
+    opacity: 0.15;
+  }
+
+  /* Reduce animation complexity on scroll */
+  .about::before,
+  .event-highlights::before,
+  .countdown::before {
+    transform-origin: center;
+    animation-timing-function: linear;
+  }
+}
+
+/* Extra small phones - Disable heavy animations completely */
+@media (max-width: 480px) {
+  .about::before,
+  .event-highlights::before,
+  .countdown::before {
+    animation-duration: 0s !important; /* Stop animation */
+    background: 
+      radial-gradient(circle at 20% 80%, rgba(0,212,255,0.06) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(37,99,235,0.06) 0%, transparent 50%);
+    /* Static gradient fallback */
+  }
+}
+
+/* PERFECT MOBILE PERFORMANCE BOOST */
+@media (prefers-reduced-motion: reduce) {
+  .about::before,
+  .event-highlights::before,
+  .countdown::before,
+  * {
+    animation-duration: 0s !important;
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* Ensure animations restart when visible */
+@keyframes waveFlow {
+  0%, 100% { transform: translateX(-50%) translateY(-50%) rotate(0deg) scale(1); }
+  25% { transform: translateX(-40%) translateY(-60%) rotate(2deg) scale(1.05); }
+  50% { transform: translateX(-60%) translateY(-40%) rotate(-1deg) scale(1.02); }
+  75% { transform: translateX(-45%) translateY(-55%) rotate(1deg) scale(1.08); }
+}
+
+@keyframes gridMove {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-60px, -60px); } /* Smaller movement */
+}
+
+@keyframes particlesMove {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-150px); } /* Smaller movement */
+}

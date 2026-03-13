@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VyomX | Space Club Event</title>
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- MOBILE PERFECT META TAGS (REPLACE ALL OF THESE) -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
+    <!-- MOBILE APP TAGS -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#0b0f2b">
+    
+    <title>VyomX | Space Club Event</title>
+    
+    <!-- YOUR EXISTING LINKS (KEEP THESE EXACTLY SAME) -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 
 
@@ -208,54 +221,59 @@ toggle.addEventListener("click", () => {
   nav.classList.toggle("active");
 });
 
+// Close menu on link click (mobile)
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    nav.classList.remove('active');
+  });
+});
+
+// OPTIMIZED COUNTDOWN
 const eventDate = new Date("Oct 12, 2026 09:00:00").getTime();
-
-const timer = setInterval(function() {
-
-const now = new Date().getTime();
-const distance = eventDate - now;
-
-const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-document.getElementById("days").innerHTML = days;
-document.getElementById("hours").innerHTML = hours;
-document.getElementById("minutes").innerHTML = minutes;
-document.getElementById("seconds").innerHTML = seconds;
-
-if (distance < 0) {
-clearInterval(timer);
+function updateCountdown() {
+  const now = new Date().getTime();
+  const distance = eventDate - now;
+  
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  
+  document.getElementById("days").innerHTML = String(days).padStart(2, '0');
+  document.getElementById("hours").innerHTML = String(hours).padStart(2, '0');
+  document.getElementById("minutes").innerHTML = String(minutes).padStart(2, '0');
+  document.getElementById("seconds").innerHTML = String(seconds).padStart(2, '0');
 }
+setInterval(updateCountdown, 1000);
 
-}, 1000);
-
-const sections = document.querySelectorAll("header,section,footer");
-const navLinks = document.querySelectorAll(".nav-links a");
+// OPTIMIZED NAVIGATION
+let ticking = false;
+function updateActiveNav() {
+  let current = "";
+  const sections = document.querySelectorAll("header,section,footer");
+  
+  sections.forEach(section => {
+    const rect = section.getBoundingClientRect();
+    if (rect.top <= 150 && rect.bottom >= 150) {
+      current = section.getAttribute("id");
+    }
+  });
+  
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.classList.remove("active");
+    if (link.getAttribute("href") === "#" + current) {
+      link.classList.add("active");
+    }
+  });
+  ticking = false;
+}
 
 window.addEventListener("scroll", () => {
-
-let current = "";
-
-sections.forEach(section => {
-const sectionTop = section.offsetTop - 200;
-const sectionHeight = section.clientHeight;
-
-if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
-current = section.getAttribute("id");
-}
-});
-
-navLinks.forEach(link => {
-link.classList.remove("active");
-
-if(link.getAttribute("href") === "#" + current){
-link.classList.add("active");
-}
-});
-
-});
+  if (!ticking) {
+    requestAnimationFrame(updateActiveNav);
+    ticking = true;
+  }
+}, { passive: true });
 </script>
 
 </body>
