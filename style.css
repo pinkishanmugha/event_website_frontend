@@ -180,7 +180,7 @@ position:relative;
 overflow:hidden;
 background:#0b0f2b;
 min-height:60vh;
-scroll-margin-top:80px;
+scroll-margin-top:70px;
 }
 
 .about-container{
@@ -253,7 +253,7 @@ background:#0b0f2b;
 text-align:center;
 position:relative;
 overflow:hidden;
-scroll-margin-top:80px;
+scroll-margin-top:70px;
 }
 
 .event-highlights::before{
@@ -354,7 +354,7 @@ letter-spacing:1px;
 .gallery{
 padding:clamp(40px, 8vw, 60px) 20px;
 text-align:center;
-scroll-margin-top:80px;
+scroll-margin-top:70px;
 position:relative;
 overflow:hidden;
 background:#0b0f2b;
@@ -402,7 +402,7 @@ font-size:0.9rem;
 padding:clamp(50px, 10vw, 80px) 5%;
 background:#0b0f2b;
 text-align:center;
-scroll-margin-top:80px;
+scroll-margin-top:70px;
 position:relative;
 overflow:hidden;
 }
